@@ -32,9 +32,9 @@
 
 * 第四步 验证编译结果
 
-   例如，发布到正式环境后，在浏览器中输入网址：`https://group.runjiaoyu.com.cn/log.html` 
+   例如，发布到正式环境后，在浏览器中输入网址：`[域名]/log.html` 
 
-   页面中显示内容：`https://group.runjiaoyu.com.cn/log/prod_1474597812851abcdfe.js`
+   页面中显示内容：`[域名]/log/prod_1474597812851abcdfe.js`
 
    可以这样解读：`[域名]/log/[QN_DOMAIN]_[编译日期（毫秒）]md5.js`
 
