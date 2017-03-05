@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-attendance">
+        <ui-header skin="s-blue" :title='title'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <!-- 选择日期组件，已经放在组件库了 -->
+        <template v-if="selecting">
+            <div class="date">
+                {{values}}
+                <i class="icon-calendar2" @click="showCalendar"></i>
+            </div>
+            <ui-calendar v-model="values" skin="s-blue" :disable-past="false" @click.native="hideToday($event)" v-if="showCalens"></ui-calendar>
+            <div class="course-infor">
+                <div class="name" v-text="courseInfor.courseName"></div>
+                <div class="school-name" v-text="courseInfor.schoolName"></div>
+                <div class="address" v-text="courseInfor.courseAddress"></div>
+                <div class="time" v-text="courseInfor.courseTime"></div>
+            </div>
+            <div class="stats">
+                <i class="icon-back"></i>
+                <div class="content">
+                    <div class="items">
+                        <div class="item">
+                            <div>应到</div>
+                            <div v-text="stuNum"></div>
+                        </div>
+                        <div class="item">
+                            <div>实到</div>
+                            <div>{{stuNum - gardesNum.absent - gardesNum.leave}}</div>
+                        </div>
+                        <div class="item">
+                            <div>正常</div>
+                            <div v-text="gardesNum.normal"></div>
+                        </div>
+                        <div class="item">
+                            <div>请假</div>
+                            <div v-text="gardesNum.leave"></div>
+                        </div>
+                        <div class="item">
+                            <div>迟到</div>
+                            <div v-text="gardesNum.late"></div>
+                        </div>
+                        <div class="item">
+                            <div>缺席</div>
+                            <div v-text="gardesNum.absent"></div>
+                        </div>
+                    </div>
+                </div>
+                <i class="icon-arr-right"></i>
+            </div>
+            <div class="m-box" v-if="!isLoading">
+                <div class="m-box__flex z-start" v-for="(check,index) in courseInfor.checks">
+                    <div class="item2" v-text="check.studentName"></div>
+                    <a class="item2" style="text-align:center" @click="check.teacherName && telDialog(check.teacherName,check.mobile)"> {{check.className}} <i class="icon-tel f-c-blue" v-if="check.mobile"></i></a>
+                    <div class="item2" @click="finalScore(index)">
+                        <span v-if="check.status === 1">正常</span>
+                        <span class="highlight" v-if="check.status === 2">迟到</span>
+                        <span class="highlight2" v-if="check.status === 3 || check.status === 4">请假</span>
+                        <span class="highlight4" v-if="check.status === 5">早退</span>
+                        <span class="highlight4" v-if="check.status === 6">缺席</span>
+                        <i class="icon-arr-right"></i>
+                        <div class="reason" v-if="check.status === 3 || check.status === 4">
+                            <span v-if="check.reason">请假理由：{{check.reason}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="loading" v-else>
+                <i class="icon-loading"></i>
+            </div>
+            <div class="g-con-b">
+                <button class="btn btn_big btn_block" :class="courseInfor.isExist ? 'btn_gray2' : 'btn_blue'" @click="updata">{{isFinishedMsg}}</button>
+            </div>
+        </template>
+        <ui-choose-type :graded="selectedInfo" :type="selectType" v-if="!selecting" @selected="selected"></ui-choose-type>
+        <ui-dialog :show="dialog.show" :title="dialog.title" :type="dialog.type" :content="dialog.content" @on-confirm="dialogOnConfirm" @on-cancel='dialogOnCancel'></ui-dialog>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('attendance.js');
+    </script>
+</body>
+</html>

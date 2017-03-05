@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body >
+    <div id="wrap" class="p-ranking">
+        <ui-header title='排行榜'>
+        <ui-header-back slot='left'></ui-header-back>
+    </ui-header>
+    <div class="ranking-tab">
+        <div class="tab-item" :class="{'z-active': tabActive}" @click="selectType(0)">
+            <span>视频</span>
+        </div>
+        <div class="tab-item" :class="{'z-active': !tabActive}" @click="selectType(1)">
+            <span>图片</span>
+        </div>
+    </div>
+    <div class="ranking-list">
+        <ui-list :is-loading="isLoading" :is-last-page="types[selectedType].option.isLastPage" @load-more="loadMore(selectedType)">
+            <a class="ranking-item" v-for="item in types[selectedType].data" :href="detailUrl + '?outcomeId_rank=' + item.outcomeId +'-'+item.rank">
+                <span class="ranking" v-text="item.rank"></span>
+                <div class="img-con">
+                    <img :src="item.coverImg">
+                    <!-- 视频有  图片列表没有-->
+                    <i class="icon-play2" v-show="vPlay"></i>
+                </div>
+                <div class="infor">
+                    <div class="ranking-name" v-text="item.name"></div>
+                    <div class="performer" v-text="item.author"></div>
+                    <div class="votes"><span v-text="item.zan"></span>票</div>
+                </div>
+            </a>
+        </ui-list>
+        <ui-nofind v-if="!types[selectedType].data.length">当前分类没有内容！</ui-nofind>
+    </div>
+    <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    
+    <script>
+    require('ranking.js');
+    </script>
+</body>
+</html>

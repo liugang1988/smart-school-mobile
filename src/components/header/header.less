@@ -1,0 +1,61 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+@headerSize: 88;
+.m-header {
+    background-color: @color-gray1;
+    border-bottom: 1px solid @color-gray4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .px2rem(height, @headerSize);
+    position: relative;
+    z-index: 99;
+}
+
+.m-header__title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    .px2rem(padding-left, 100); //大概估算下就行
+    .px2rem(padding-right, 100); //大概估算下就行
+    .px2rem(line-height, @headerSize);
+    .px2px(font-size, 36);
+    .text-overflow();
+    color: @color-black;
+}
+
+.m-header__left,
+.m-header__right {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    a,
+    [class*="icon-"] {
+        .px2rem(padding, 15, 20);
+    }
+    [class*="icon-"] {
+        .px2px(font-size, 36);
+        color: @color-primary;
+    }
+}
+
+.m-header__left {
+    justify-content: flex-start;
+}
+
+.m-header__right {
+    justify-content: flex-end;
+}
+
+.s-blue {
+    .m-header__left,
+    .m-header__right {
+        [class*="icon-"] {
+            color: @color-blue;
+        }
+    }
+}

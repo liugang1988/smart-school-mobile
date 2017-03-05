@@ -1,0 +1,30 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+.m-scores {
+    .m-scores__item {
+        .px2rem(margin-bottom, @spacing-vertical-small);
+        color: @color-black;
+    }
+    .stars {
+        display: inline-block;
+        i {
+            .px2px(margin-left, 10);
+        }
+    }
+    .icon-collect3,
+    .icon-collected3 {
+        .px2px(font-size, @font-size-h1);
+    }
+    .icon-collect3 {
+        color: @color-gray4;
+    }
+    .icon-collected3 {
+        color: @color-success;
+    }
+}
+
+.comment {
+    .px2rem(margin-top, @spacing-vertical-small);
+    .px2rem(padding, @spacing-vertical-base);
+    background-color: @color-white;
+}

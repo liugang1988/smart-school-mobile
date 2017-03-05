@@ -1,0 +1,75 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.m-form {
+    background-color: @color-white;
+}
+
+.m-form__item {
+    display: flex;
+    display: -webkit-box;
+    align-items: center;
+    .px2rem(margin-left, @spacing-vertical-base);
+    .px2rem(padding-right, @spacing-vertical-base);
+    background-color: @color-white;
+    border-top: 1px solid @color-gray4;
+    &:first-child {
+        border-top: 0;
+    }
+    // 输入框 
+    .text-input {
+        outline: none;
+        display: block;
+        flex-grow: 1;
+        .px2px(margin-left, @spacing-vertical-small);
+        .px2px(padding, 10);
+        .px2px(line-height, 60);
+        border: 0;
+    }
+    [class*="icon-"] {
+        .px2px(font-size, 36px);
+        color: lighten(@color-gray5, 10%);
+    }
+    // 右边距
+    .icon-see,
+    .icon-nosee {
+        .px2px(padding-left, @spacing-vertical-small);
+        .px2px(margin-left, @spacing-vertical-small);
+        .px2px(line-height, 88);
+    }
+    .icon-see {
+        color: @color-primary;
+    }
+}
+
+// 单独输入框 
+.t-input {
+    outline: none;
+    display: block;
+    width: 100%;
+    .px2px(padding, 10, 20);
+    .px2px(line-height, 64);
+    border: 1px solid @color-gray4;
+    .px2px(border-radius, @radius-large);
+}
+
+// textarea
+.u-textarea {
+    width: 100%;
+    border: 1px solid @color-gray4;
+    .px2rem(height, 200);
+    .px2rem(padding, @spacing-vertical-base);
+    background-color: @color-gray1;
+    vertical-align: middle;
+    .px2rem(border-radius, 6);
+    resize: none;
+}
+
+// 下拉框
+.u-select {
+    display: block;
+    width: 100%;
+    .px2px(padding, 10, 20);
+    .px2px(height, 84);
+    border: 1px solid @color-gray4;
+    .px2px(border-radius, @radius-large);
+}

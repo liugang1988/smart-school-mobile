@@ -1,0 +1,33 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+.p-my-check {
+    .check-infor {
+        .px2rem(padding, 30);
+        border-bottom: 1px solid @color-gray4;
+        background-color: @color-white;
+    }
+    .infor-item {
+        .px2rem(margin-bottom, 20);
+        .px2rem(min-height, 20);
+        i {
+            .px2rem(margin-right, 12);
+        }
+        .address-detail {
+            overflow: hidden;
+        }
+    }
+    .img-list {
+        .px2rem(margin-top, @spacing-vertical-small);
+        overflow: hidden;
+        img {
+            float: left;
+            .px2rem(width, 130);
+            .px2rem(height, 130);
+            .px2rem(margin-right, @spacing-vertical-small);
+            .px2rem(margin-bottom, @spacing-vertical-small);
+            &:nth-child(4n+4) {
+                margin-right: 0;
+            }
+        }
+    }
+}

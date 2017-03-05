@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-attendance">
+        <ui-header title='考勤请假'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="m-box my-attendance">
+            <a class="m-box__flex" :href="link">
+                <div class="item">
+                    我的请假
+                </div>
+                <i class="icon-arr-right"></i>
+            </a>
+        </div>
+        <template v-if="!loading && course">
+            <ui-calendar v-model="date" :disable-past="false" :weeks-list="weeksList"></ui-calendar>
+            <div class="course-infor">
+                <div class="name" v-text="course.courseName"></div>
+                <div class="address" v-text="course.courseAddress"></div>
+                <div class="school-name"><span v-text="course.classHour"></span>课时</div>
+                <div class="time" v-text="course.courseTime"></div>
+            </div>
+            <div class="m-box f-mt10">
+                <div class="m-box__title">请假类型</div>
+                <label class="m-box__flex" v-for="item in types">
+                    <div class="item2" :class="{'z-checked':item.id===type}" v-text="item.name"></div>
+                    <div class="item2">
+                        <ui-radio :label="item.id" v-model="type"></ui-radio>
+                    </div>
+                </label>
+            </div>
+            <div class="reason-con">
+                <div class="title">请假说明</div>
+                <textarea class="u-textarea" placeholder="请输入请假说明..." v-model="reason"></textarea>
+            </div>
+            <div class="g-con-b">
+                <button class="btn btn_primary btn_block btn_big" @click="apply" v-text="submitText"></button>
+            </div>
+        </template>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('leave.js');
+    </script>
+</body>
+</html>

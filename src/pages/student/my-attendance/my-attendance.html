@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-my-attendance">
+        <ui-header title='我的请假'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="my-attendance-box" v-if="items">
+            <div class="m-box f-mt10" v-for="item in items">
+                <div class="m-box__text">申请时间：<span v-text="item.applyTime"></span></div>
+                <div class="m-box__text">课程日期：<span v-text="item.checkDate"></span></div>
+                <div class="m-box__text">请假类型：<span v-text="item.type==3?'事假':'病假'"></span></div>
+                <div class="m-box__text">请假原因：<span v-text="item.reason"></span></div>
+            </div>
+            <div class="btn btn-more" @click="loadMore" v-if="!loading  && dataTotal > pageSize*pageNo">点击加载更多</div>
+        </div>
+        <ui-nofind v-if="!loading && !dataTotal">暂无请假记录！</ui-nofind>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('my-attendance.js');
+    </script>
+</body>
+</html>

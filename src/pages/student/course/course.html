@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-course">
+        <ui-header title='选课'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <ui-tab :items='types' :selected="selectedType" @select="selectType" v-if="types && types.length"></ui-tab>
+        <div class="course-list" v-if="!isLoading && courseList.length">
+            <a class="course" v-for="item in courseList" :class="{'z-selected':item.applyStatus}" :href="'course-detail.html?id='+item.courseId">
+                <div class="name">
+                    {{item.courseName}}
+                    <span class="selected-flag" v-if="item.applyStatus">已选</span>
+                </div>
+                <div class="infor">
+                    <div>人数:{{item.alrApply}}~{{item.limitApply}}</div>
+                    <div>{{item.courseTime}}</div>
+                </div>
+                <i class="icon-arr-right"></i>
+            </a>
+        </div>
+        <ui-nofind v-if="!isLoading && !courseList.length">当前分类没有可选的课程！</ui-nofind>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('course.js');
+    </script>
+</body>
+</html>

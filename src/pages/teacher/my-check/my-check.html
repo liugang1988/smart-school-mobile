@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-my-check">
+        <ui-header :title='title'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="check-infor" v-for='item in checkInfo'>
+            <div class="infor-item">
+                <i class="icon-record"></i> 签到日期：{{item.signDate}}
+            </div>
+            <div class="infor-item">
+                <i class="icon-time"></i> 签到时间：{{item.signTime}}
+            </div>
+            <div class="infor-item">
+                <div class="f-fl">
+                    <i class="icon-map"></i> 签到地点：
+                </div>
+                <div class="address-detail">
+                    {{item.signAddress}}
+                </div>
+            </div>
+            <div class="infor-item">
+                <div class="f-fl">
+                    <i class="icon-editor"></i> 备注信息：
+                </div>
+                <div class="address-detail">
+                    {{item.remark}}
+                </div>
+            </div>
+            <div class="img-list">
+                <img :src="img.url" alt="" v-for='(img,index) in item.photos' @click='checkbigPic(index,item)'>
+            </div>
+        </div>
+        <!-- 点击查看大图 -->
+        <div class="checkbigPic" v-if='showImg' @click='checkbigPic()'>
+            <div class='mengImg'>
+                <ui-banner :items='photos' :speed='100000' :is-show-dots='false' :active='photoIndex' @changes="getIndex" :is-height='isHeights'></ui-banner>
+            </div>
+        </div>
+        <div class="g-con-b">
+            <button class="btn btn_big btn_block btn_blue" @click="more" v-if='!isLastPage'>更多</button>
+        </div>
+        <ui-nofind v-if="nofind"></ui-nofind>
+        <ui-dialog :show="dialog.show" :title="dialog.title" :content="dialog.content" @on-confirm="dialogOnHide"></ui-dialog>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('my-check.js');
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body >
+    <div id="wrap" class="p-work-detail">
+        <ui-header title='详情'>
+        <ui-header-back slot='left'></ui-header-back>
+    </ui-header>
+    <div class="detail-hd">
+        <img :src="infor.outcomeUrl" v-if="!typeStatus">
+        <!-- 以下元素视频有，图片详情只有img图片 -->
+        <div v-if="typeStatus" style="width:100%; height:5.625rem">
+            <img :src="infor.coverImg" v-if="!videoStatus">
+            <i class="icon-play2 flag" @click="videoPlay()" v-show="playStatus"></i>
+            <video :src="infor.outcomeUrl" width="100%" height="100%" id="video" controls :poster="infor.coverImg" v-if="videoStatus"></video>
+            <div class="broadcast-number" v-show="playStatus">
+                <i class="icon-play2"></i>
+                <span v-text="infor.playAmount"></span>次播放
+            </div>
+        </div>
+    </div>
+    <div class="main-infor">
+        <div class="name" v-text="infor.name"></div>
+        <div><i class="icon-good"></i> <span v-text="zan"></span>票</div>
+        <span class="identifier">编号：<span v-text="infor.outcomeCode"></span></span>
+        <div><i class="icon-medal"></i> {{typeStatus? '视频':'图片'}}第<span v-text="rank"></span>名</div>
+    </div>
+    <div class="btn-con">
+        <button class="btn btn_big btn_orange" v-if="shareBtnStutas" @click="shareBtn()">分享</button>
+        <button class="btn btn_big" :class="{'btn_gray2': isFlag,'btn_block': !shareBtnStutas}" @click="votes()" v-text="btnText"></button>
+    </div>
+    <div class="secondary-detail">
+        <div>表演者：<span v-text="infor.author"></span></div>
+        <div>社团：<span v-text="infor.courseName"></span></div>
+        <div>发表时间：<span v-text="infor.uploadTime"></span></div>
+        <div>简介：<span v-html="intro"></span></div>
+    </div>
+    <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    
+    <script>
+    require('work-detail.js');
+    </script>
+</body>
+</html>

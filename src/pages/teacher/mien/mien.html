@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-mien">
+        <ui-header title='课堂风采'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="m-box">
+            <a class="m-box__flex" :href='link'>
+                <div class="item">
+                    发帖
+                </div>
+                <i class="icon-arr-right"></i>
+            </a>
+        </div>
+        <div class="course-list">
+            <div class="course" v-for="item in courseInfo">
+                <div>课程名称：<span v-text="item.courseName"></span></div>
+                <div>老师姓名：<span v-text="item.teacherName"></span></div>
+                <div>学生姓名：<span v-text="item.studentName"></span></div>
+                <div>日期：<span v-text="item.evaTime"></span></div>
+                <div class="comment">
+                    <i class="icon-triangle_d"></i> <span v-text="item.comment"></span>
+                </div>
+                <div class="img-list">
+                    <img :src="photo.url+'?imageMogr2/thumbnail/130x130/size-limit/50k!'" v-for='(photo,index) in item.photos' @click='checkbigPic(index,item)'>
+                </div>
+            </div>
+        </div>
+        <!-- 点击查看大图 -->
+        <div class="checkbigPic" v-if='showImg' @click='checkbigPic()'>
+            <div class='mengImg'>
+                <ui-banner :items='photos' :speed='100000' :is-show-dots='false' :active='photoIndex' @changes="getIndex" :is-height='isHeights'></ui-banner>
+            </div>
+        </div>
+        <ui-nofind v-if="!isLoading && !courseInfo.length">
+            <div>暂无数据</div>
+        </ui-nofind>
+        <div class="btn btn-more" @click='showMore' v-if="!isLoadingList  && dataTotal">更多</div>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('mien.js');
+    </script>
+</body>
+</html>

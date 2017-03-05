@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-my-mien">
+        <ui-header title='我的风采'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <!--课程信息-->
+        <div class="course-infor" v-if="course">
+            <div class="name" v-text="course.courseName"></div>
+            <div class="school-name" v-text="course.schoolName"></div>
+            <div class="address" v-text="course.courseAddress"></div>
+            <div class="time" v-text="course.courseTime"></div>
+        </div>
+        <div class="mien-list" v-if="list && list.length">
+            <div class="mien f-mt10" v-for="item in list">
+                <div class="date">日期：<span v-text="item.evaTime"></span></div>
+                <div class="name">点评：<span v-text="item.studentName"></span></div>
+                <div class="text" v-text="item.comment"></div>
+                <div class="img-list">
+                    <img :src="photo.url+'?imageMogr2/thumbnail/130x130/size-limit/50k!'" v-for="(photo,index) in item.photos" @click="checkbigPic(index, item, $event)">
+                </div>
+            </div>
+        </div>
+        <div class="btn btn-more" @click="getList" v-if="!isLoadingList  && dataTotal > pageSize*pageNo">点击加载更多</div>
+        <ui-nofind v-if="!isLoadingList && !dataTotal">还没有我的风采相关信息</ui-nofind>
+        <!-- 点击查看大图 -->
+        <div class="checkbigPic" v-if='showImg' @click='checkbigPic()'>
+            <div class='mengImg'>
+                <ui-banner :items='photos' :speed='1000000' :is-show-dots='false' :active='photoIndex' @changes="getIndex" :is-height='isHeights'></ui-banner>
+            </div>
+        </div>
+        <!--消息框-->
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('my-mien.js');
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-community">
+        <ui-header title='社团集体风采'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <ui-tab :items='types' :selected="selectedType" @select="selectType" v-if="types && types.length"></ui-tab>
+        <div class="community-list">
+            <div class="community-item" v-for="course in courseList">
+                <div class="course-infor">
+                    <div class="name" v-text="course.courseName"></div>
+                    <div class="school-name" v-text="course.schoolName"></div>
+                    <div class="address" v-text="course.courseAddress"></div>
+                    <div class="zanAmount">点赞数：<span v-text="course.zanAmount"></span></div>
+                    <div class="time" v-text="course.courseTime"></div>
+                    <a class="btn btn_small btn_primary2" :href="'community-detail.html?mienId='+ course.id">
+                        <i class="icon-i"></i> 详细
+                    </a>
+                </div>
+                <div class="infor">
+                    <div class="f-clearfix">
+                        <div class="date">日期：<span v-text="course.evaTime"></span></div>
+                        <div>任课老师：<span v-text="course.teacherName"></span></div>
+                    </div>
+                    <div class="f-mt10" v-text="course.comment"></div>
+                    <div class="img-list">
+                        <img :src="item.url" alt="" v-for='item in course.photos'>
+                    </div>
+                </div>
+            </div>
+            <div class="btn btn-more" @click="getComInfo(type)" v-if="!isLoading  && dataTotal > pageSize*pageNo">点击加载更多</div>
+            <ui-nofind v-if="!isLoading && !dataTotal"></ui-nofind>
+        </div>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('community.js');
+    </script>
+</body>
+</html>

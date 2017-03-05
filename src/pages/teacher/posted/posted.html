@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-posted">
+        <ui-header skin="s-blue" :title='title'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <template v-if="selecting">
+            <div class="date">
+                {{value}}
+                <i class="icon-calendar2" @click="showCalendar"></i>
+            </div>
+            <ui-calendar v-if="showCalens" v-model="value" skin="s-blue" :disable-past="false" @on-change="hideCalendar" @click="hideToday($event)"></ui-calendar>
+            <div class="course-infor">
+                <div class="name" v-text="courserInfo.courseName"></div>
+                <div class="school-name" v-text="courserInfo.schoolName"></div>
+                <div class="address" v-text="courserInfo.courseAddress"></div>
+                <div class="time" v-text="courserInfo.courseTime"></div>
+            </div>
+            <div class="m-box f-mt10">
+                <div class="m-box__flex" @click="selectStu">
+                    <div class="item2 big black">选择学生</div>
+                    <div class="item2">
+                        <span class="gray" v-text="hasSelectName"></span>
+                        <i class="icon-arr-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="textarea-con">
+                <div class="title">教师点评<span class="tip">（禁止发布与课程无关的文字)</span></div>
+                <textarea class="u-textarea" placeholder="请输入点评内容" v-model="remarkOn"></textarea>
+            </div>
+            <div class="upload-con">
+                <div class="title">学习图片</div>
+                <div class="img-item" v-for="(item,index) in photos">
+                    <i class="icon-del" @click="closePhotos(index)"></i>
+                    <img :src="item.url" alt="">
+                </div>
+                <ui-uploader @success="uploadSuccess" @progress="uploadPro" @error="uploadError" @start="uploaderStart"></ui-uploader>
+            </div>
+            <div class="g-con-b">
+                <button class="btn btn_big btn_block btn_blue" @click="submit">提交</button>
+            </div>
+        </template>
+        <ui-choose-type :selectArr="selectArr" :graded="selectedInfo" :select-list="allStu" :type="selectType" v-if="!selecting" @selected="selected"></ui-choose-type>
+        <ui-dialog :show="dialog.show" confirm-text='返回首页' cancel-text='继续发帖' :title="dialog.title" :type="dialog.type" @on-confirm="dialogOnHide" @on-cancel="dialogOnCancel"></ui-dialog>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('posted.js');
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-achievement">
+        <ui-header title='社团成果展'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <!-- 搜索 -->
+        <ui-search :placeholder="searchInfo" :is-location="url" v-model="searchKey"></ui-search>
+        <a :href="rankUrl" class="rank-link">2016排行榜</a>
+        <ui-tab :items='types' :selected="selectedType" @select="selectType" v-if="types && types.length"></ui-tab>
+        <div class="work-list">
+            <ui-list :is-loading="isLoading" :is-last-page="isLastPage" @load-more="loadMore()">
+                <div v-for="item in list">
+                    <a class="work-item" :href="itemUrl+ '?outcomeId_rank=' + item.outcomeId +'-'+item.rank">
+                        <div class="work-item__bd">
+                            <i class="icon-play2 flag" v-if="item.outcomeType==1"></i>
+                            <img :src="item.coverImg" alt="">
+                            <div class="infor">
+                                <span class="flex-item">编号：<em v-text="item.outcomeCode"></em></span>
+                                <span class="flex-item"><em v-text="item.zan"></em>人赞</span>
+                            </div>
+                        </div>
+                        <div class="work-name" v-text="item.name"></div>
+                    </a>
+                </div>
+            </ui-list>
+            <ui-nofind v-if="!list.length">当前分类没有内容！</ui-nofind>
+        </div>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('achievement.js');
+    </script>
+</body>
+</html>

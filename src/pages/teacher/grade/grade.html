@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-grade">
+        <ui-header skin="s-blue" :title='title'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <template v-if="selecting">
+            <div class="date" v-text="today"></div>
+            <div class="course-infor">
+                <div class="name" v-text="courseInfor.courseName"></div>
+                <div class="school-name" v-text="courseInfor.schoolName"></div>
+                <div class="address" v-text="courseInfor.courseAddress"></div>
+                <div class="time" v-text="courseInfor.courseTime"></div>
+            </div>
+            <div class="stats">
+                <i class="icon-back"></i>
+                <div class="content">
+                    <div class="items">
+                        <div class="item">
+                            <div>优秀</div>
+                            <div v-text="gardesNum.perfect"></div>
+                        </div>
+                        <div class="item">
+                            <div>良好</div>
+                            <div v-text="gardesNum.good"></div>
+                        </div>
+                        <div class="item">
+                            <div>合格</div>
+                            <div v-text="gardesNum.qualified"></div>
+                        </div>
+                        <div class="item">
+                            <div>不合格</div>
+                            <div v-text="gardesNum.unqualified"></div>
+                        </div>
+                    </div>
+                </div>
+                <i class="icon-arr-right"></i>
+            </div>
+            <div class="m-box">
+                <div class="m-box__flex" v-for="(eva,index) in evas" @click="finalScore(index)">
+                    <div class="item2" v-text="eva.studentName"></div>
+                    <div class="item2 f-tac">课堂分：<span v-text="eva.courseGrade"></span></div>
+                    <div class="item2">
+                        <span class="highlight2" v-if="eva.grade === 1">优秀</span>
+                        <span class="highlight" v-if="eva.grade === 2">良好</span>
+                        <span v-if="eva.grade === 3">合格</span>
+                        <span class="highlight4" v-if="eva.grade === 4">不合格</span>
+                        <i class="icon-arr-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="g-con-b">
+                <button class="btn btn_big btn_block btn_blue" @click="updata" v-text="isFinishedMsg"></button>
+            </div>
+        </template>
+        <ui-choose-type :graded="selectedInfo" :type="selectType" v-if="!selecting" @selected="selected"></ui-choose-type>
+        <ui-dialog :show="dialog.show" :title="dialog.title" :content="dialog.content" @on-confirm="dialogOnHide"></ui-dialog>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('grade.js');
+    </script>
+</body>
+</html>

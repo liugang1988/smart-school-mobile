@@ -1,0 +1,166 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.vux-prev-icon,
+.vux-next-icon {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #6FB92C;
+    border-radius: 0;
+    border-top: none;
+    border-right: none;
+    transform: rotate(45deg);
+    margin-left: 30px;
+    line-height: 40px;
+}
+
+.vux-next-icon {
+    transform: rotate(-135deg);
+    left: auto;
+    top: 14px;
+    right: 30px;
+}
+
+.inline-calendar a {
+    text-decoration: none;
+    tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.calendar-year,
+.calendar-month {
+    position: relative;
+}
+
+.calendar-header {
+    padding: 5px 0;
+    line-height: 40px;
+    font-size: 1.2em;
+    overflow: hidden;
+    border-bottom: 1px solid #D6D6D6;
+}
+
+.calendar-header> div {
+    float: left;
+    width: 50%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.calendar-header a:last-of-type {
+    float: right;
+    vertical-align: bottom;
+}
+
+.calendar-title {
+    display: inline-block;
+    padding: 0 6%;
+    line-height: 30px;
+    font-size: 14px;
+    color: #666;
+    border-radius: 4px;
+}
+
+.inline-calendar {
+    width: 100%;
+    border-radius: 2px;
+    border-bottom: 1px solid #D6D6D6;
+    background: #fff;
+    transition: all .5s ease;
+}
+
+.inline-calendar table {
+    clear: both;
+    width: 100%;
+    border-collapse: collapse;
+    color: #444;
+}
+
+.inline-calendar th.week {
+    font-weight: normal;
+    line-height: 34px;
+    border-bottom: 1px solid #D6D6D6;
+}
+
+.inline-calendar td {
+    position: relative;
+    padding: 5px 0;
+    text-align: center;
+    vertical-align: middle;
+    color: #333;
+}
+
+.inline-calendar td.week {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+.inline-calendar td> span {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+// 当天
+.inline-calendar td.is-today {
+    color: #6FB92C;
+}
+
+//灰色
+.inline-calendar td.is-disabled {
+    color: #CCC;
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+//有课
+.inline-calendar td.is-remind {
+    span {
+        position: relative;
+        &:after {
+            position: absolute;
+            content: '';
+            width: 6px;
+            height: 6px;
+            top: 27px;
+            left: 10px;
+            border-radius: 50%;
+            background-color: #6eb92b;
+        }
+    }
+}
+
+//选中
+.inline-calendar td.current> span {
+    background-color: #6FB92C;
+    color: #FFF;
+}
+
+//蓝色皮肤
+.inline-calendar.s-blue {
+    .vux-prev-icon,
+    .vux-next-icon {
+        border-color: #2E99E6;
+    }
+    // 当天
+    td.is-today {
+        color: #2E99E6;
+    }
+    //有课
+    td.is-remind {
+        span {
+            &:after {
+                background-color: #2E99E6;
+            }
+        }
+    }
+    //选中
+    td.current> span {
+        background-color: #2E99E6;
+    }
+}

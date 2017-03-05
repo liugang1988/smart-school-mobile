@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-apply">
+        <ui-header title='调课申请列表'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="m-box f-mt10" v-for="item in info">
+            <div class="m-box__text">申请时间：<span v-text="item.applyTime"></span></div>
+            <div class="m-box__text">原课程：<span v-text="item.oldCourseName"></span></div>
+            <div class="m-box__text">调整为：<span v-text="item.newCourseName"></span></div>
+            <div class="m-box__text">理由：<span v-text="item.applyReason"></span></div>
+            <div class="m-box__text">结果：<span class="f-c-success" v-text="getType(item.status)"></span></div>
+            <div class="m-box__text" v-if="item.reason" v-text="item.reason"></div>
+        </div>
+        <!--消息框-->
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('apply-list.js');
+    </script>
+</body>
+</html>

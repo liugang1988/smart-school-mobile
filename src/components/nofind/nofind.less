@@ -1,0 +1,20 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.m-nofind {
+    .px2rem(padding-top, 150);
+    .px2rem(padding-bottom, 150);
+    text-align: center;
+    .icon-null {
+        display: block;
+        .px2rem(width, 208);
+        .px2rem(height, 208);
+        margin-left: auto;
+        margin-right: auto;
+        .px2rem(margin-bottom, @spacing-vertical-small);
+        border-radius: 50%;
+        .px2px(font-size, 150);
+        .px2rem(line-height, 190);
+        color: @color-white;
+        background-color: @color-gray4;
+    }
+}

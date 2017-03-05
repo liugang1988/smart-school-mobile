@@ -1,0 +1,93 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+.p-course {
+    .filter-nav {
+        position: relative;
+        .px2rem(height, 88);
+        overflow: hidden;
+        background-color: @color-white;
+        border-bottom: 1px solid @color-gray4;
+    }
+    .tag-list {
+        position: absolute;
+        .px2rem(min-width, 640);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        white-space: nowrap;
+        .tag {
+            display: inline-block;
+            .px2rem(margin-right, @spacing-vertical-small);
+            .px2rem(line-height, 82);
+            span {
+                display: inline-block;
+                .px2rem(padding, 0, 16);
+                border-style: solid;
+                border-color: @color-white;
+                .px2rem(border-bottom-width, 6);
+                border-top-width: 0;
+                border-left-width: 0;
+                border-right-width: 0;
+            }
+            &.z-active {
+                color: @color-primary;
+                span {
+                    border-color: @color-primary;
+                }
+            }
+        }
+    }
+    .course-list {
+        .px2rem(padding-left, @spacing-vertical-base);
+        border-bottom: 1px solid @color-gray4;
+        background-color: @color-white;
+    }
+    .course {
+        display: flex;
+        align-items: center;
+        .px2rem(padding, @spacing-vertical-base, @spacing-vertical-base, @spacing-vertical-base, 0);
+        border-bottom: 1px solid @color-gray4;
+        .name {
+            position: relative;
+            flex-grow: 1;
+            .px2px(font-size, @font-size-h2);
+            color: @color-black;
+        }
+        .infor {
+            flex-shrink: 0;
+            .px2rem(width, 240);
+            .px2rem(margin-right, @spacing-vertical-small);
+            text-align: right;
+        }
+        .icon-arr-right {
+            flex-shrink: 0;
+        }
+        &.z-selected {
+            .selected-flag {
+                position: relative;
+                display: inline-block;
+                .px2px(width, 52);
+                .px2px(height, 36);
+                .px2px(line-height, 36);
+                .px2px(font-size, 20);
+                .px2px(border-radius, 6);
+                text-align: center;
+                vertical-align: top;
+                color: @color-white;
+                background-color: @color-primary;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    .px2px(bottom, -6);
+                    .px2px(left, 10);
+                    border-width: 3px;
+                    border-style: solid dashed dashed solid;
+                    border-color: @color-primary transparent transparent @color-primary;
+                }
+            }
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}

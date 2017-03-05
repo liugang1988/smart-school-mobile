@@ -1,0 +1,71 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+.p-course-detail {
+    .detail {
+        .px2rem(margin-top, @spacing-vertical-base);
+        .px2rem(padding, @spacing-vertical-base);
+        line-height: 2.2;
+        border-top: 1px solid @color-gray4;
+        border-bottom: 1px solid @color-gray4;
+        background-color: @color-white;
+        .name {
+            .px2px(font-size, @font-size-h2);
+            color: @color-black;
+        }
+        .about {
+            line-height: @line-height-small;
+        }
+        .img-list {
+            .px2rem(margin-top, @spacing-vertical-small);
+            overflow: hidden;
+            img {
+                float: left;
+                .px2rem(width, 130);
+                .px2rem(height, 130);
+                .px2rem(margin-right, @spacing-vertical-small);
+                .px2rem(margin-bottom, @spacing-vertical-small);
+                &:nth-child(4n+4) {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+.m-show-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: @z-index-max;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.m-show-img__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .img-con {
+        position: absolute;
+        min-width: 100%;
+        height: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .img-item {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}

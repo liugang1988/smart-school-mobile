@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-score">
+        <ui-header title='课程成绩'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <!--课程信息-->
+        <div class="course-infor" v-if="course">
+            <div class="name" v-text="course.courseName"></div>
+            <div class="school-name" v-text="course.schoolName"></div>
+            <div class="address" v-text="course.courseAddress"></div>
+            <div class="time" v-text="course.courseTime"></div>
+        </div>
+        <!--期末成绩-->
+        <div class="m-box f-mt10">
+            <div class="m-box__text">
+                <span class="black">期末成绩：<span v-text="grade"></span></span>
+            </div>
+        </div>
+        <!--课堂成绩-->
+        <div class="m-box">
+            <div class="m-box__text f-tac">
+                <span class="black">课堂成绩</span>
+            </div>
+            <div class="m-box__flex" v-for="item in list">
+                <div class="item2">
+                    日期：<span v-text="item.checkDate"></span>
+                </div>
+                <div class="item2">
+                    <span v-text="item.courseEvaluateText"></span>
+                </div>
+            </div>
+            <div class="btn btn-more" v-if="!isLoadingList && dataTotal > pageNo*pageSize" @click="getList">点击加载更多</div>
+            <ui-nofind v-if="!isLoadingList && !dataTotal">还没有课堂成绩相关信息</ui-nofind>
+        </div>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('score.js');
+    </script>
+</body>
+</html>

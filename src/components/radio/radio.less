@@ -1,0 +1,27 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.u-radio {
+    i {
+        display: inline-block;
+        .px2px(width, 44);
+        .px2px(height, 44);
+        .px2px(line-height, 36);
+        .px2px(font-size, 32);
+        text-align: center;
+        border-radius: 50%;
+        color: @color-white;
+        background-color: @color-white;
+        border: 1px solid #b2b2b2;
+    }
+    input {
+        visibility: hidden;
+        position: absolute;
+    }
+    &.z-checked {
+        i {
+            background-color: @color-primary;
+            color: @color-white;
+            border-color: @color-primary;
+        }
+    }
+}

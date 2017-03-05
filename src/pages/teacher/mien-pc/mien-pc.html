@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-mien">
+        <ui-header title='课堂风采'></ui-header>
+        <div class="course-list">
+            <div class="course" v-for="item in courseInfo">
+                <div>课程名称：{{item.courseName}}</div>
+                <div>老师姓名：{{item.teacherName}}</div>
+                <div>学生姓名：{{item.studentName}}</div>
+                <div>日期：{{item.evaTime}}</div>
+                <div class="comment">
+                    <i class="icon-triangle_d"></i> {{item.comment}}
+                </div>
+                <div class="img-list">
+                    <img :src="photo.url" alt='{{item.courseName}}' v-for='(photo,index) in item.photos' @click='checkbigPic(index,item)'>
+                </div>
+            </div>
+        </div>
+        <!-- 点击查看大图 -->
+        <div class="checkbigPic" v-if='showImg' @click='checkbigPic()'>
+            <div class='mengImg'>
+                <ui-banner :items='photos' :speed='100000' :is-show-dots='false' :active='photoIndex' @changes="getIndex" :is-height='isHeights'></ui-banner>
+            </div>
+        </div>
+        <ui-nofind v-if="!isLoading && !courseInfo.length">
+            <div>暂无数据</div>
+        </ui-nofind>
+        <div class="btn btn-more" @click='showMore' v-if="!isLoadingList  && dataTotal">更多</div>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('mien-pc.js');
+    </script>
+</body>
+</html>

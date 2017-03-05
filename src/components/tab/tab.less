@@ -1,0 +1,38 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.m-tab {
+    min-width: 10rem;
+    white-space: nowrap;
+    overflow: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-bottom: 1px solid @color-gray4;
+    background-color: @color-white;
+}
+
+.m-tab__item {
+    display: inline-block;
+    .px2rem(line-height, 82);
+    .px2rem(padding, 16);
+    text-align: center;
+    border-style: solid;
+    border-color: @color-white;
+    .px2rem(border-bottom-width, 6);
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    white-space: nowrap;
+    &.z-active {
+        color: @color-primary;
+        border-color: @color-primary;
+    }
+}
+
+.m-tab.s-blue {
+    .m-tab__item.z-active {
+        color: @color-blue;
+        border-color: @color-blue;
+    }
+}

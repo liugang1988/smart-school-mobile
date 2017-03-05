@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+    <script src="https://jic.talkingdata.com/app/h5/v1?appid=F46DC183F3354CF086E2DAD2B7B9A87E&vn=v3"></script><!--ignore-->
+</head>
+<body>
+    <div id="wrap">
+        <ui-header title='首页'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <ui-tab :items='students' :selected-id="selectedStudentId" @select="selectStudent" v-if="students && students.length">
+        </ui-tab>
+        <div class="box" v-if="courseNo">
+            <a class="btn btn_primary2" href="course.html">可选课程({{courseNo}})</a>
+            <a class="btn btn_primary2" href="my-course.html">已报课程</a>
+        </div>
+        <div class="loading" v-if="isLoading">
+            <ui-icon name="loading"></ui-icon>
+        </div>
+        <div class="course-list" v-if="!isLoading && courseList.length">
+            <div class="course" v-for="course in courseList">
+                <div class="course-infor">
+                    <div class="name" v-text="course.courseName"></div>
+                    <div class="school-name" v-text="course.schoolName"></div>
+                    <div class="address" v-text="course.courseAddress"></div>
+                    <div class="time" v-text="course.courseTime"></div>
+                    <a class="btn btn_small btn_primary2" :href="'course-detail.html?id='+course.courseId">
+                        <i class="icon-i"></i> 详细
+                    </a>
+                </div>
+                <div class="course_nav">
+                    <a class="item" :href="'attendance.html?id='+course.courseId">
+                        <i class="icon-leave"></i>
+                        <span>考勤请假</span>
+                    </a>
+                    <a class="item" :href="'score.html?id='+course.courseId">
+                        <i class="icon-course"></i>
+                        <span>课程成绩</span>
+                    </a>
+                    <a class="item" :href="'my-mien.html?id='+course.courseId">
+                        <i class="icon-person"></i>
+                        <span>我的风采</span>
+                    </a>
+                    <a class="item" :href="'comment.html?id='+course.courseId">
+                        <i class="icon-assessment"></i>
+                        <span>评价老师</span>
+                    </a>
+                    <a class="item" :href="'apply.html?id='+course.courseId">
+                        <i class="icon-switch"></i>
+                        <span>申请调课</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <ui-nofind v-if="!isLoading && !courseList.length">
+            <div>还没有已开课的课程</div>
+            <a class="btn btn_primary f-mt10" href="course.html" v-if="courseNo">去选课~</a>
+        </ui-nofind>
+        <a class="achievement-link" v-if="broadCast.isExist" :href="broadCast.entranceUrl">
+            <img :src="broadCast.entranceImgUrl" alt="">
+        </a>
+        <a class="achievement-link" v-if="doorInfor.isExist" :href="doorUrl+doorInfor.outcomeShowId">
+            <img :src="doorInfor.entranceImgUrl" alt="">
+        </a>
+        <div class="community" v-if="photos && photos.length">
+            <div class="community-hd">
+                <div class="flex-item title">
+                    社团集体风采
+                </div>
+                <div class="flex-item">
+                    <a href="/student/community.html">更多<i class="icon-arr-right"></i></a>
+                </div>
+            </div>
+            <div class="img-list">
+                <a href="/student/community.html">
+                    <img :src="item.url" alt="" v-for='item in photos'>
+                </a>
+                <ui-nofind v-if="!photos.length">
+                    <div>还没有社团集体风采</div>
+                </ui-nofind>
+            </div>
+        </div>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('index.js');
+    </script>
+</body>
+</html>

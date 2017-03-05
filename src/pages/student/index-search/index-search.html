@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-achievement">
+        <ui-header title='社团成果展'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <!-- 搜索 -->
+        <div class="search-hd">
+            <ui-search :placeholder="searchInfo" v-model="keyValue" @search="search"></ui-search>
+        </div>
+        <div class="work-list">
+            <ui-list :is-loading="isLoading" :is-last-page="isLastPage" @load-more="loadMore()">
+                <div v-for="item in list">
+                    <a class="work-item" :href="itemUrl+ '?outcomeId_rank=' + item.outcomeId +'-'+item.rank">
+                        <div class="work-item__bd">
+                            <img :src="item.coverImg" alt="">
+                            <div class="infor">
+                                <span class="flex-item">编号：<em v-text="item.outcomeCode"></em></span>
+                                <span class="flex-item"><em v-text="item.zan"></em>人赞</span>
+                            </div>
+                        </div>
+                        <div class="work-name" v-text="item.name"></div>
+                    </a>
+                </div>
+            </ui-list>
+            <ui-nofind v-if="!list.length">当前搜索没有内容！</ui-nofind>
+        </div>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('index-search.js');
+    </script>
+</body>
+</html>

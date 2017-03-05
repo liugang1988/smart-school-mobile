@@ -1,0 +1,124 @@
+/**
+ * 默认按钮
+ */
+
+@import "../ui/variable";
+@import "../ui/mixin";
+// base
+.btn {
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-decoration: none;
+    color: @color-white;
+    .px2px(font-size, @font-size-h2);
+    .px2px(line-height, 72);
+    .px2px(border-radius, @radius-large);
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid @color-primary;
+    background-color: @color-primary;
+    cursor: pointer;
+    outline: none;
+    .usn();
+    .text-overflow();
+    //块状
+    &.btn_block {
+        display: block;
+        width: 100%;
+    }
+    //禁用
+    &.z-disabled {
+        background-color: lighten(@color-gray5, 20%);
+        border-color: lighten(@color-gray5, 20%);
+    }
+}
+
+// 色调
+.btn_gray {
+    color: @color-gray5;
+    background-color: transparent;
+    border-color: lighten(@color-gray5, 20%);
+}
+
+.btn_gray2 {
+    color: @color-gray7;
+    background-color: @color-gray4;
+    border-color: @color-gray4;
+}
+
+.btn_gray4 {
+    color: @color-white;
+    background-color: @color-gray4;
+    border-color: @color-gray4;
+}
+
+.btn_green {
+    background-color: @color-primary;
+    border-color: @color-primary;
+}
+
+.btn_blue {
+    background-color: @color-blue;
+    border-color: @color-blue;
+}
+
+.btn_orange {
+    background-color: @color-orange;
+    border-color: @color-orange;
+}
+
+.btn_white {
+    color: @color-gray7;
+    background-color: @color-white;
+    border-color: @color-white;
+}
+
+// 镂空
+.btn_primary2 {
+    color: @color-primary;
+    background-color: transparent;
+    border-color: lighten(@color-primary, 20%);
+}
+
+.btn_orange2 {
+    color: @color-success;
+    background-color: @color-white;
+    border-color: @color-success;
+}
+
+.btn_gray3 {
+    color: @color-gray7;
+    background-color: transparent;
+    border-color: @color-gray5;
+}
+
+.btn_blue2 {
+    color: @color-blue;
+    background-color: transparent;
+    border-color: @color-blue;
+}
+
+// 大小
+.btn_small {
+    .px2px(line-height, 56);
+    .px2px(font-size, @font-size-h3);
+    .px2px(border-radius, @radius-small);
+}
+
+.btn_big {
+    .px2px(line-height, 84);
+    .px2px(font-size, @font-size-h1);
+    .px2px(border-radius, @radius-large);
+}
+
+.btn-more {
+    display: block;
+    .px2px(font-size, 28);
+    .px2px(line-height, 84);
+    .px2rem(margin-top, 20);
+    .px2rem(margin-bottom, 20);
+    background: none;
+    border: 0;
+    color: #666;
+}

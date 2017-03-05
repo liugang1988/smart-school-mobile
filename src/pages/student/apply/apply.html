@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body class="p-apply">
+    <div id="wrap">
+        <ui-header title='申请调课'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <!--提交申请-->
+        <!-- <ui-apply v-if="!isLoading && !info && !isSelecting" :new-course="newCourse" @on-select-new-course="isSelecting=true"></ui-apply> -->
+        <template v-if="!isLoading && !info && !isSelecting">
+            <div class="m-box f-mt10">
+                <div class="m-box__flex">
+                    <div class="item2 big black">原课程</div>
+                    <div class="item2">{{name}}</div>
+                </div>
+                <div class="m-box__flex" @click="changeCourse">
+                    <div class="item2 big black">调整为</div>
+                    <div class="item2">
+                        {{newName}}
+                        <i class="icon-arr-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="reason-con">
+                <div class="title">理由：</div>
+                <textarea class="u-textarea" v-model="reason" placeholder="请输入调课理由..."></textarea>
+            </div>
+            <div class="g-con tip">
+                为了让学生能够专下心学习，同时维持课程秩序，每个人仅有一次申请调课机会，请三思后申请。
+            </div>
+            <div class="g-con-b">
+                <button class="btn btn_primary btn_block btn_big" @click="submit" v-text="submitText"></button>
+            </div>
+        </template>
+        <!--选新课程-->
+        <!-- <ui-select-new-course v-if="isSelecting" @on-selected="onSelected"></ui-select-new-course> -->
+        <template v-if="isSelecting">
+            <div class="course-list" v-if="!isLoading && courseList.length">
+                <a class="course" v-for="item in courseList" @click="select(item)" :class="{'z-selected':item.applyStatus}">
+                    <div class="name">
+                        {{item.courseName}}
+                        <span class="selected-flag" v-if="item.applyStatus">已选</span>
+                    </div>
+                    <div class="infor">
+                        <div>人数:{{item.alrApply}}~{{item.limitApply}}</div>
+                        <div>{{item.courseTime}}</div>
+                    </div>
+                    <i class="icon-arr-right"></i>
+                </a>
+            </div>
+            <ui-nofind v-if="!isLoading && !courseList.length">现在没有可以报名的课程！
+                <br>如果需要调到已开的课程，请直接联系学校！</ui-nofind>
+        </template>
+        <!--申请详情-->
+        <!-- <ui-detail v-if="!isLoading" :info="info"></ui-detail> -->
+        <template v-if="!isLoading">
+            <div class="m-box" v-if="info">
+                <a class="m-box__flex" :href="'apply-list.html?id=' + id">
+                    <div class="item">
+                        我的调课申请列表
+                    </div>
+                    <i class="icon-arr-right"></i>
+                </a>
+            </div>
+            <div class="m-box f-mt10" v-if="info">
+                <div class="m-box__text">申请时间：{{info.applyTime}}</div>
+                <div class="m-box__text">原课程：{{info.oldCourseName}}</div>
+                <div class="m-box__text">调整为：{{info.newCourseName}}</div>
+                <div class="m-box__text">理由：{{info.applyReason}}</div>
+                <div class="m-box__text">结果：<span class="f-c-success">{{info.type}}</span></div>
+                <div class="m-box__text" v-if="info.reason" v-text="info.reason"></div>
+                <div class="g-con-b" v-if="info.status !== 1">
+                    <a class="btn btn_primary btn_block btn_big" :href="redirect">重新申请调课</a>
+                </div>
+            </div>
+        </template>
+        <!--消息框-->
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('apply.js');
+    </script>
+</body>
+</html>

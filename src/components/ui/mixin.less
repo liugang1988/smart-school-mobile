@@ -1,0 +1,117 @@
+/**
+ * 混合使用
+ */
+
+@import "variable";
+
+/**
+ * 像素转rem
+ */
+
+.px2rem(@prop, @num1) {
+    @{prop}: @num1 / @font-size-root * 1rem;
+}
+
+.px2rem(@prop, @num1, @num2) {
+    @{prop}: (@num1 / @font-size-root * 1rem) (@num2 / @font-size-root * 1rem);
+}
+
+.px2rem(@prop, @num1, @num2, @num3) {
+    @{prop}: (@num1 / @font-size-root * 1rem) (@num2 / @font-size-root * 1rem) (@num3 / @font-size-root * 1rem);
+}
+
+.px2rem(@prop, @num1, @num2, @num3, @num4) {
+    @{prop}: (@num1 / @font-size-root * 1rem) (@num2 / @font-size-root * 1rem) (@num3 / @font-size-root * 1rem) (@num4 / @font-size-root * 1rem);
+}
+
+
+/**
+ * 像素转像素
+ */
+
+@px2pxRatio: 0.5px; //转换率，根据实际情况修改
+.px2px(@prop, @num1) {
+    @{prop}: @num1 * @px2pxRatio;
+}
+
+.px2px(@prop, @num1, @num2) {
+    @{prop}: (@num1 * @px2pxRatio) (@num1 * @px2pxRatio);
+}
+
+.px2px(@prop, @num1, @num2, @num3) {
+    @{prop}: (@num1 * @px2pxRatio) (@num2 * @px2pxRatio) (@num3 * @px2pxRatio);
+}
+
+.px2px(@prop, @num1, @num2, @num3, @num4) {
+    @{prop}: (@num1 * @px2pxRatio) (@num2 * @px2pxRatio) (@num3 * @px2pxRatio) (@num4 * @px2pxRatio);
+}
+
+
+/**
+ * 禁止用户选择文本
+ */
+
+.usn() {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+
+/**
+ * 清除浮动
+ * http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+
+.clearfix() {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
+/**
+ * 文本隐藏
+ * https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
+ */
+
+.text-hide() {
+    font: ~"0/0" a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+
+/**
+ * 文本截取
+ * 注意：设置成快状元素（inline-block / block）生效
+ */
+
+.text-overflow() {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+/**
+ * 多行文本截取
+ * http://dropshado.ws/post/1015351370/webkit-line-clamp
+ */
+
+.line-clamp(@lines, @line-height: 1.3em) {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: @lines; // number of lines to show
+    overflow: hidden;
+    line-height: @line-height;
+    max-height: @line-height * @lines;
+}

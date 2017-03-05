@@ -1,0 +1,146 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+@half-spacing-vertical-small: @spacing-vertical-small / 2;
+.box {
+    .px2rem(padding, 24);
+    .px2rem(margin-bottom, @spacing-vertical-small);
+    text-align: center;
+    border-bottom: 1px solid @color-gray4;
+    background-color: @color-white;
+    .btn + .btn {
+        .px2rem(margin-left, 100);
+    }
+}
+
+.m-box__title {
+    display: block;
+}
+
+.course {
+    .px2rem(margin-bottom, @spacing-vertical-small);
+    background-color: @color-white;
+    border-bottom: 1px solid @color-gray4;
+}
+
+.course-infor {
+    position: relative;
+    .px2rem(padding, @spacing-vertical-base);
+    .px2px(font-size, @font-size-h4);
+    border-bottom: 1px solid @color-gray4;
+    .name, .school-name, .address {
+        .px2rem(margin-bottom, 10);
+    }
+    .name {
+        .px2px(font-size, @font-size-h2);
+        color: @color-black;
+    }
+    .time {
+        .px2rem(margin-right, 140);
+        .px2px(font-size, @font-size-h5);
+        color: @color-gray5;
+    }
+    .btn {
+        position: absolute;
+        .px2rem(bottom, @spacing-vertical-base);
+        .px2rem(right, @spacing-vertical-base);
+    }
+}
+
+.course_nav {
+    display: flex;
+    align-items: center;
+    .px2rem(padding, @spacing-vertical-small, @half-spacing-vertical-small);
+    overflow: hidden;
+    .item {
+        display: block;
+        flex-grow: 1;
+        width: 100%;
+        .px2rem(margin-right, @half-spacing-vertical-small);
+        .px2rem(padding, @spacing-vertical-small, 0);
+        .px2px(font-size, @font-size-h4);
+        .px2px(border-radius, @radius-large);
+        color: @color-black;
+        text-align: center;
+        background-color: lighten(@color-gray2, 1%);
+        &:last-child {
+            margin-right: 0;
+        }
+        i {
+            display: block;
+        }
+        i:before {
+            content: '';
+            display: block;
+            .px2rem(width, 50);
+            .px2rem(height, 50);
+            margin-left: auto;
+            margin-right: auto;
+            background-size: cover;
+        }
+    }
+}
+
+//社团艺术展
+.achievement-link {
+    display: block;
+    .px2rem(height, 150);
+    .px2rem(line-height, 150);
+    .px2rem(margin, @spacing-vertical-small, 0);
+    img {
+        width: 100%;
+        .px2rem(height, 150);
+    }
+}
+
+//社区风采
+.community {
+    border-top: 1px solid @color-gray4;
+    border-bottom: 1px solid @color-gray4;
+    background-color: @color-white;
+    .community-hd {
+        display: flex;
+        align-items: center;
+        .px2rem(padding, 20, 30);
+        background-color: #fcefd6;
+        border-bottom: 1px solid @color-gray4;
+        .flex-item {
+            display: block;
+            width: 100%;
+            flex-grow: 1;
+            &:last-child {
+                text-align: right;
+            }
+        }
+        .title {
+            .px2px(font-size, @font-size-h2);
+            color: @color-black;
+        }
+    }
+    .img-list {
+        .px2rem(margin, @spacing-vertical-small, @spacing-vertical-base);
+        overflow: hidden;
+        img {
+            float: left;
+            .px2rem(width, 130);
+            .px2rem(height, 130);
+            .px2rem(margin-right, @spacing-vertical-small);
+            .px2rem(margin-bottom, @spacing-vertical-small);
+            &:nth-child(4n+4) {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+// 未找到样式重置
+.m-nofind {
+    .px2rem(padding-top, 20);
+    .px2rem(padding-bottom, 20);
+}
+
+// loading 样式
+.loading {
+    .px2rem(padding-top, 20);
+    text-align: center;
+    .px2px(font-size, 40);
+}

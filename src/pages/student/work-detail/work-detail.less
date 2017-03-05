@@ -1,0 +1,78 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+.p-work-detail {
+    .detail-hd {
+        position: relative;
+        a {
+            width: 100%;
+            .px2rem(height, 360);
+            display: block;
+        }
+        img {
+            width: 100%;
+            .px2rem(height, 360);
+            vertical-align: top;
+        }
+        .flag {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            line-height: 0.99;
+            .px2rem(font-size, 100);
+            color: @color-white;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.2);
+            transform: translate(-50%, -50%);
+        }
+        .broadcast-number {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            .px2rem(line-height, 50);
+            .px2rem(padding, 0, @spacing-vertical-base);
+            color: @color-white;
+            .px2px(font-size, @font-size-h5);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+    }
+    .main-infor {
+        .px2rem(padding, @spacing-vertical-small, @spacing-vertical-base);
+        line-height: 1.8;
+        border-bottom: 1px solid @color-gray4;
+        background-color: @color-white;
+        .name {
+            color: @color-black;
+            .px2px(font-size, @font-size-h2);
+        }
+        .identifier {
+            float: right;
+            .px2px(font-size, @font-size-h5);
+        }
+    }
+    .btn-con {
+        .px2rem(padding, @spacing-vertical-small, @spacing-vertical-base);
+        border-bottom: 1px solid @color-gray4;
+        background-color: @color-white;
+        .btn {
+            &:first-child {
+                .px2rem(width, 200);
+                .px2rem(margin-right, 20);
+            }
+            &:nth-child(2) {
+                .px2rem(width, 350);
+            }
+            &.btn_block {
+                width: 100%;
+            }
+        }
+    }
+    .secondary-detail {
+        .px2rem(margin-top, @spacing-vertical-small);
+        .px2rem(padding, @spacing-vertical-small, @spacing-vertical-base);
+        line-height: 1.8;
+        border-top: 1px solid @color-gray4;
+        border-bottom: 1px solid @color-gray4;
+        background-color: @color-white;
+    }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-my-course">
+        <ui-header title='已报课程'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="course-list" v-if="!isLoading && courseList.length">
+            <a class="course" v-for="item in courseList" :href="'course-detail.html?id='+item.courseId">
+                <div class="name">
+                    {{item.courseName}}
+                    <span v-if="item.auditStatus===1">（未审核）</span>
+                    <span v-if="item.auditStatus===2">（通过）</span>
+                    <span v-if="item.auditStatus===3">（审核不通过）</span>
+                </div>
+                <div class="infor">
+                    <div v-text="item.courseTime"></div>
+                    <div v-text="item.courseAddress"></div>
+                </div>
+                <i class="icon-arr-right"></i>
+            </a>
+        </div>
+        <ui-nofind v-if="!isLoading && !courseList.length">您还未选择任何课程哦！</ui-nofind>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('my-course.js');
+    </script>
+</body>
+</html>

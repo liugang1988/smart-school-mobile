@@ -1,0 +1,118 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+.p-ranking {
+    .ranking-tab {
+        display: flex;
+        align-items: center;
+        .px2px(padding, 24, 0);
+        border-bottom: 1px solid @color-gray4;
+        background-color: @color-white;
+        .tab-item {
+            flex-grow: 1;
+            width: 100%;
+            text-align: center;
+            .px2px(line-height, 40);
+            span {
+                position: relative;
+                display: inline-block;
+                .px2rem(padding, 0, 30);
+                &:after {
+                    position: absolute;
+                    .px2px(top, 60);
+                    left: 0;
+                    display: inline-block;
+                    width: 100%;
+                    content: '';
+                    border-bottom: 2px solid @color-white;
+                }
+            }
+            &.z-active {
+                span {
+                    color: @color-primary;
+                    &:after {
+                        border-color: @color-primary;
+                    }
+                }
+            }
+        }
+        .tab-item + .tab-item {
+            border-left: 1px solid @color-gray4;
+        }
+    }
+    .ranking-item {
+        display: flex;
+        align-items: center;
+        .px2rem(padding, @spacing-vertical-base, @spacing-vertical-small);
+        background-color: @color-white;
+        // 第一名
+        &:first-child {
+            .ranking {
+                font-size: 0;
+                background-image: url('images/1.png?__inline');
+                background-size: cover;
+            }
+        }
+        // 第二名
+        &:nth-child(2) {
+            .ranking {
+                font-size: 0;
+                background-image: url('images/2.png?__inline');
+                background-size: cover;
+            }
+        }
+        // 第三名
+        &:nth-child(3) {
+            .ranking {
+                font-size: 0;
+                background-image: url('images/3.png?__inline');
+                background-size: cover;
+            }
+        }
+        .ranking {
+            flex-shrink: 0;
+            display: inline-block;
+            .px2rem(width, 30);
+            .px2rem(height, 39);
+            .px2rem(margin-right, 30);
+            text-align: center;
+        }
+        .img-con {
+            position: relative;
+            flex-shrink: 0;
+            .px2rem(margin-right, 20);
+            img {
+                .px2rem(width, 228);
+                .px2rem(height, 128);
+                vertical-align: top;
+            }
+            .icon-play2 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                line-height: 0.99;
+                .px2rem(font-size, 50);
+                color: @color-white;
+                border-radius: 50%;
+                background-color: rgba(0, 0, 0, 0.2);
+
+                transform: translate(-50%, -50%);
+            }
+        }
+        .infor {
+            flex-grow: 1;
+            text-align: left;
+            .ranking-name {
+                .px2rem(margin-bottom, 10);
+                .px2px(font-size, @font-size-h2);
+                color: @color-black;
+            }
+            .performer {
+                .px2px(font-size, @font-size-h5);
+            }
+            .votes {
+                .px2px(font-size, @font-size-h5);
+                color: @color-orange;
+            }
+        }
+    }
+}

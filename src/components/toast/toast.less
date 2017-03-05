@@ -1,0 +1,45 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.m-toast {
+    z-index: @z-index-max + 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    .px2rem(max-width, 640);
+    .px2rem(padding, @spacing-vertical-small, @spacing-vertical-base);
+    text-align: center;
+    word-wrap: break-word;
+    color: white;
+    .px2px(border-radius, @radius-large);
+    background: rgba(40, 40, 40, .75);
+    transform: translate(-50%, -50%);
+    [class^="icon-"],
+    [class*=" icon-"] {
+        display: inline-block;
+        .px2px(font-size, 80);
+    }
+    .icon-success {
+        color: @color-primary;
+    }
+    .icon-warn {
+        color: #f76260;
+    }
+    .icon-loading {
+        display: inline-block;
+        .px2px(width, 80);
+        .px2px(height, 80);
+        .px2px(margin-bottom, @spacing-vertical-small);
+        line-height: 1;
+        color: @color-white;
+        animation: loading_normal 1.6s linear infinite;
+    }
+}
+
+@keyframes loading_normal {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

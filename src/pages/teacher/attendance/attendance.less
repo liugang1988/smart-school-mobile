@@ -1,0 +1,105 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+.p-attendance {
+    .date {
+        position: relative;
+        .px2rem(padding, 24, 0);
+        .px2px(font-size, @font-size-h2);
+        color: @color-black;
+        text-align: center;
+        background-color: @color-white;
+        border-bottom: 1px solid @color-gray4;
+        i {
+            position: absolute;
+            right: 0;
+            top: 0;
+            .px2rem(padding, 24, @spacing-vertical-base);
+            .px2px(font-size, @font-size-h2);
+            color: @color-blue;
+            // line-height: 1;
+        }
+    }
+
+
+
+    .course-infor {
+        .px2rem(padding, @spacing-vertical-base);
+        .px2px(font-size, @font-size-h4);
+        border-bottom: 1px solid @color-gray4;
+        background-color: @color-white;
+        .name,
+        .school-name,
+        .address {
+            .px2rem(margin-bottom, 10);
+        }
+        .name {
+            .px2px(font-size, @font-size-h2);
+            color: @color-black;
+        }
+        .time {
+            .px2px(font-size, @font-size-h5);
+            color: @color-gray5;
+        }
+    }
+    .stats {
+        .px2rem(padding, @spacing-vertical-base, 10);
+        overflow: hidden;
+        i {
+            float: left;
+            .px2rem(width, 60);
+            .px2px(line-height, 80);
+            .px2px(font-size, @font-size-h2);
+            color: @color-blue;
+            text-align: center;
+        }
+        .content {
+            float: left;
+            position: relative;
+            .px2rem(width, 500);
+            overflow: hidden;
+        }
+        .items {
+            display: flex;
+            align-items: center;
+            .px2rem(min-width, 510);
+        }
+        .item {
+            flex-grow: 1;
+            text-align: center;
+        }
+    }
+    .reason {
+        .px2rem(margin-top, 10);
+    }
+    .z-start {
+        align-items: flex-start;
+    }
+}
+
+.m-choose-date {
+    position: fixed;
+    .px2rem(top, 88);
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: @z-index-max;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.m-choose-date__inner {
+    position: relative;
+    .px2rem(width, 640);
+    margin-left: auto;
+    margin-right: auto;
+    .icon-triangle_d {
+        position: absolute;
+        .px2px(top, -28);
+        .px2rem(right, 22);
+        .px2px(font-size, 30);
+        color: @color-white;
+        z-index: @z-index-max;
+        text-shadow: 0 1px 1px #d6d6d6;
+        transform: rotate(180deg);
+    }
+}
+

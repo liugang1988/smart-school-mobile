@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-course-detail">
+        <ui-header title='课程详情'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="detail" v-if="!isLoading && info">
+            <div class="name" v-text="info.courseName"></div>
+            <div>任课老师：<span v-text="info.teacherName"></span></div>
+            <div>课程课时：<span v-text="info.classHour"></span>节</div>
+            <div>上课时间：<span v-text="info.courseTime"></span></div>
+            <div>上课地点：<span v-text="info.courseAddress"></span></div>
+            <div>人数上限：<span v-text="info.limitApply"></span>人</div>
+            <div>报名人数：<span v-text="info.alrApply"></span>人</div>
+            <div class="about">
+                课程介绍：
+                <div v-html="info.intro"></div>
+            </div>
+            <div class="img-list" v-if="photos && photos.length">
+                <img :src="item.imgUrl" v-for="(item, index) in photos" @click="checkbigPic(index)">
+            </div>
+        </div>
+        <div class="g-con-b" v-if="info">
+            <button class="btn btn_block btn_big" @click="applyCourse" v-text="submitText" :class="info.applyStatus ? 'btn_gray2' : 'btn_primary'"></button>
+        </div>
+        <!-- 点击查看大图 -->
+        <div class="checkbigPic" v-if='showImg' @click='checkbigPic()'>
+            <div class='mengImg'>
+                <ui-banner :items='photos' :speed='100000' :is-show-dots='false' :active='photoIndex' @changes="getIndex" :is-height='isHeights'></ui-banner>
+            </div>
+        </div>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+        <ui-dialog :show="dialog.show" :title="dialog.title" :type="dialog.type" :content="dialog.content" @on-confirm="dialogOnConfirm" @on-cancel="dialogOnCancel"></ui-dialog>
+    </div>
+    <script>
+    require('course-detail.js');
+    </script>
+</body>
+</html>

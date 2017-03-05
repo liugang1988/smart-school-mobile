@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap">
+        <ui-header title='评论老师'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="m-box">
+            <!--课程信息-->
+            <div class="m-box__flex" v-if="info">
+                <div class="item2 big black">
+                    <span v-text="info.courseName"></span>
+                </div>
+                <div class="item2">
+                    任课老师：<span v-text="info.teacherName"></span>
+                </div>
+            </div>
+            <!--评价详情-->
+            <div class="m-box__flex" v-if="evaluateTime">
+                <div class="item2 big black">
+                    评价时间
+                </div>
+                <div class="item2" v-text="evaluateTime"></div>
+            </div>
+            <div class="m-box__text m-scores" v-if="detail">
+                <div class="m-scores__item">
+                    <span>着装礼仪：</span>
+                    <ui-five-star v-model="detail.clothingEvaluate"></ui-five-star>
+                </div>
+                <div class="m-scores__item">
+                    <span>课程内容：</span>
+                    <ui-five-star v-model="detail.interestEvaluate"></ui-five-star>
+                </div>
+                <div class="m-scores__item">
+                    <span>专业水平：</span>
+                    <ui-five-star v-model="detail.lessonEvaluate"></ui-five-star>
+                </div>
+                <div class="f-mt10" v-text="detail.comment"></div>
+            </div>
+        </div>
+        <!--评价老师-->
+        <ui-comment :course-id="courseId"></ui-comment>
+        <!--消息框-->
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('comment.js');
+    </script>
+</body>
+</html>

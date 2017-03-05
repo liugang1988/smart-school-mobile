@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-course-editor">
+        <ui-header :title='title'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="course-infor">
+            <div class="name" v-text="courserInfo.courseName"></div>
+            <div class="school-name" v-text="courserInfo.schoolName"></div>
+            <div class="address" v-text="courserInfo.courseAddress"></div>
+            <div class="time" v-text="courserInfo.courseTime"></div>
+        </div>
+        <div class="textarea-con">
+            <div class="title">课程介绍</div>
+            <textarea class="u-textarea" placeholder="请输入课程介绍..." v-model="courserInfo.intro">
+            </textarea>
+        </div>
+        <div class="upload-con">
+            <div class="title">课程图片</div>
+            <div class="img-item" v-for="(item,index) in photos">
+                <i class="icon-del" @click="closePhotos(index)"></i>
+                <img :src="item.url" alt="">
+            </div>
+            <ui-uploader @success="uploadSuccess" @progress="uploadPro" @error="uploadError" @start="uploaderStart"></ui-uploader>
+        </div>
+        <div class="g-con-b">
+            <button class="btn btn_big btn_block btn_blue" @click="submite">确定</button>
+        </div>
+        <ui-dialog :show="dialog.show" :title="dialog.title" :content="dialog.content" @on-confirm="dialogOnHide"></ui-dialog>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('course-editor.js');
+    </script>
+</body>
+</html>

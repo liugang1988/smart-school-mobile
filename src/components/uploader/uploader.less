@@ -1,0 +1,43 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.m-img-upload {
+    position: relative;
+    display: inline-block;
+    .px2rem(width, 121);
+    .px2rem(height, 121);
+    text-align: center;
+    color: @color-gray5;
+    border: 1px solid @color-gray4;
+    .px2rem(border-radius, 6);
+    background-color: @color-white;
+    input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+    &:before {
+        display: block;
+        font-family: 'run';
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        .px2rem(line-height, 110);
+        .px2rem(font-size, 50);
+        content: "\e905";
+    }
+    &.z-loading {
+        &:before {
+            content: "\e926";
+            animation: loading_normal 1.6s linear infinite;
+        }
+    }
+}

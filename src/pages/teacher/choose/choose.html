@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-choose">
+        <ui-header :title='title'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <!--迟到早退-->
+        <div class="choose-list" v-if="selectType === 1">
+            <div class="choose-item">
+                <div class="content">
+                    正常
+                </div>
+                <i class="icon-right"></i>
+            </div>
+            <div class="choose-item z-checked">
+                <div class="content">
+                    迟到
+                </div>
+                <i class="icon-right"></i>
+            </div>
+            <div class="choose-item">
+                <div class="content">
+                    病假
+                </div>
+                <i class="icon-right"></i>
+            </div>
+            <div class="choose-item">
+                <div class="content">
+                    事假
+                </div>
+                <i class="icon-right"></i>
+            </div>
+            <div class="choose-item">
+                <div class="content">
+                    早退
+                </div>
+                <i class="icon-right"></i>
+            </div>
+            <div class="choose-item">
+                <div class="content">
+                    旷课
+                </div>
+                <i class="icon-right"></i>
+            </div>
+        </div>
+        <!--优秀良好-->
+        <div class="choose-list" v-if="selectType === 2">
+            <div class="choose-item">
+                <div class="content">
+                    优秀
+                </div>
+                <i class="icon-right"></i>
+            </div>
+            <div class="choose-item z-checked">
+                <div class="content">
+                    良好
+                </div>
+                <i class="icon-right"></i>
+            </div>
+            <div class="choose-item">
+                <div class="content">
+                    合格
+                </div>
+                <i class="icon-right"></i>
+            </div>
+            <div class="choose-item">
+                <div class="content">
+                    不合格
+                </div>
+                <i class="icon-right"></i>
+            </div>
+        </div>
+        <div class="choose-list">
+            <div class="choose-item" v-for="(item,index) in selectContent[selectType].selectClass" :class="{'z-checked' : index === selectContent[selectType].defaultSelect }">
+                <div class="content">
+                    {{item}}
+                </div>
+                <i class="icon-right"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+    require('choose.js');
+    </script>
+</body>
+</html>

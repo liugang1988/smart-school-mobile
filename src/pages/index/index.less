@@ -1,0 +1,46 @@
+@import "../../components/ui/variable";
+@import "../../components/ui/mixin";
+body {
+    height: 100%;
+    background-color: @color-white;
+}
+
+.choose-identity {
+    .px2rem(padding-top, 170);
+    .title {
+        .px2px(font-size, 32);
+        color: @color-black;
+        text-align: center;
+    }
+    .btn-con {
+        .px2rem(margin-top, 80);
+        overflow: hidden;
+    }
+    .choose {
+        .px2rem(width, 182);
+        text-align: center;
+        &:before {
+            display: block;
+            .px2rem(width, 182);
+            .px2rem(height, 182);
+            content: '';
+            .px2rem(margin-bottom, 30);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+    .teacher {
+        float: left;
+        .px2rem(margin-left, 70);
+        &:before {
+            background-image: url(t.png);
+        }
+    }
+    .student {
+        float: right;
+        .px2rem(margin-right, 70);
+        &:before {
+            background-image: url(s.png);
+        }
+    }
+}

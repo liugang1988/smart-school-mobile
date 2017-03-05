@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-stu-comment">
+        <ui-header skin="s-blue" :title='title'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="m-box f-mt10">
+            <div class="m-box__text">
+                <div class="big black">
+                    综合评分
+                    <span class="highlight" v-if="averageEva">{{averageEva}}分</span>
+                    <span class="highlight" v-else>暂无评分</span>
+                </div>
+            </div>
+        </div>
+        <div class="comment-list" v-if="evas.length">
+            <div class="comment" v-for="eva in evas">
+                <div class="m-scores">
+                    <div class="m-scores__item">
+                        <span>着装礼仪：</span>
+                        <div class="stars">
+                            <i class="icon-collected" v-for="item in eva.clothingEva"></i>
+                            <i class="icon-collect" v-for="item in 5 - eva.clothingEva"></i>
+                        </div>
+                    </div>
+                    <div class="m-scores__item">
+                        <span>课程内容：</span>
+                        <div class="stars">
+                            <i class="icon-collected" v-for="item in eva.interestEva"></i>
+                            <i class="icon-collect" v-for="item in 5 - eva.interestEva"></i>
+                        </div>
+                    </div>
+                    <div class="m-scores__item">
+                        <span>专业水平：</span>
+                        <div class="stars">
+                            <i class="icon-collected" v-for="item in eva.lessonEva"></i>
+                            <i class="icon-collect" v-for="item in 5 - eva.lessonEva"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-mt10">{{eva.comment}}</div>
+                <div class="date">评价时间：{{eva.evaTime}}</div>
+            </div>
+        </div>
+        <ui-nofind v-if="!isLoading && !evas.length">
+            <div>暂无数据</div>
+        </ui-nofind>
+        <div class="btn btn-more" @click='showMore' v-if="!isLoadingList  && dataTotal">更多</div>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('stu-comment.js');
+    </script>
+</body>
+</html>

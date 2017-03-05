@@ -1,0 +1,55 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+.p-attendance {
+    .my-attendance {
+        margin-bottom: 0;
+        background-color: #fff8d7;
+    }
+    .date {
+        position: relative;
+        .px2rem(padding, 24, 0);
+        .px2px(font-size, @font-size-h2);
+        color: @color-black;
+        text-align: center;
+        background-color: @color-white;
+        border-bottom: 1px solid @color-gray4;
+        i {
+            position: absolute;
+            right: 0;
+            top: 0;
+            .px2rem(padding, 24, @spacing-vertical-base);
+            .px2px(font-size, @font-size-h2);
+            color: @color-primary;
+        }
+    }
+    .course-infor {
+        .px2rem(padding, @spacing-vertical-base);
+        .px2px(font-size, @font-size-h4);
+        border-bottom: 1px solid @color-gray4;
+        background-color: @color-white;
+        .name, .school-name, .address {
+            .px2rem(margin-bottom, 10);
+        }
+        .name {
+            .px2px(font-size, @font-size-h2);
+            color: @color-black;
+        }
+        .time {
+            .px2px(font-size, @font-size-h5);
+            color: @color-gray5;
+        }
+    }
+    .reason-con {
+        .px2rem(margin-top, @spacing-vertical-small);
+        .px2rem(padding, 40, @spacing-vertical-base);
+        background-color: @color-white;
+        .title {
+            .px2px(font-size, @font-size-h2);
+            color: @color-black;
+            .px2rem(margin-bottom, 10);
+        }
+    }
+    .item2.z-checked {
+        color: @color-primary;
+    }
+}

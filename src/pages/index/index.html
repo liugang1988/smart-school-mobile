@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap">
+        <ui-header title='选择身份'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="choose-identity" v-if="!isLoading">
+            <div class="title">请选择您的身份</div>
+            <div class="btn-con">
+                <div class="choose teacher" @click="loginTeacher">老师</div>
+                <div class="choose student" @click="loginStudent">学生</div>
+            </div>
+        </div>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+        <ui-dialog :show="dialog.show" :title="dialog.title" :content="dialog.content" @on-confirm="dialogOnHide"></ui-dialog>
+    </div>
+    <script>
+    require('index.js');
+    </script>
+</body>
+</html>

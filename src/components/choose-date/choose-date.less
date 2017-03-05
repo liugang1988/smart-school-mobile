@@ -1,0 +1,28 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.m-choose-date {
+    position: fixed;
+    .px2rem(top, 88);
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: @z-index-max;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.m-choose-date__inner {
+    position: relative;
+    .px2rem(width, 640);
+    margin-left: auto;
+    margin-right: auto;
+    .icon-triangle_d {
+        position: absolute;
+        .px2px(top, -28);
+        .px2rem(right, 22);
+        .px2px(font-size, 30);
+        color: @color-white;
+        z-index: @z-index-max;
+        text-shadow: 0 1px 1px #d6d6d6;
+        transform: rotate(180deg);
+    }
+}

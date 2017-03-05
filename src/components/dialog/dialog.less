@@ -1,0 +1,63 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.m-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: @z-index-max;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+/* 容器 */
+
+@radius: 10px;
+.m-dialog__inner {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    border-radius: @radius;
+    background: @color-white;
+}
+
+.m-dialog__hd {
+    .px2rem(padding, @spacing-vertical-base, 50);
+    .px2px(font-size, @font-size-h2);
+    color: @color-black;
+    text-align: center;
+}
+
+.m-dialog__bd {
+    .px2rem(padding, 0, @spacing-vertical-base);
+    .px2rem(margin-bottom, @spacing-vertical-small);
+    text-align: center;
+}
+
+.m-dialog__ft {
+    display: flex;
+    border-top: 1px solid @color-gray4;
+}
+
+// 弹出框按钮
+.m-dialog__btn {
+    display: block;
+    border: 0;
+    flex-grow: 1;
+    .px2px(font-size, @font-size-h2);
+    .px2rem(line-height, 88);
+    color: #007aff;
+    background: @color-white;
+    text-align: center;
+    border-bottom-left-radius: @radius;
+    border-bottom-right-radius: @radius;
+    &+ & {
+        border-bottom-left-radius: 0;
+        border-left: 1px solid @color-gray4;
+    }
+}

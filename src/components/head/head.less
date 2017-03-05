@@ -1,0 +1,27 @@
+/**
+ * 全局
+    @require "../ui/normalize.less"
+    @require "../ui/base.less"
+    @require "../ui/helper.less"
+    @require "../button/button.less"
+    @require "../icons/icons.less"
+    @require "../panel/panel.less"
+    @require "../form/form.less"
+ */
+
+@import "../ui/variable";
+@import "../ui/mixin";
+[v-if], [v-show] {
+    visibility: hidden;
+}
+
+// 通用con布局
+.g-con {
+    .px2rem(margin, @spacing-vertical-base);
+}
+
+// 页面底部
+.g-con-b {
+    .px2rem(margin, @spacing-vertical-base, @spacing-vertical-base, 0, @spacing-vertical-base);
+    .px2rem(padding-bottom, @spacing-vertical-base);
+}

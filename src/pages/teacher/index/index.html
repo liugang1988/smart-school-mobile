@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+    <script src="https://jic.talkingdata.com/app/h5/v1?appid=F46DC183F3354CF086E2DAD2B7B9A87E&vn=v3"></script>
+    <!--ignore-->
+</head>
+<body class="p-index">
+    <div id="wrap">
+        <ui-header title='首页' skin='s-blue'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <ui-tab :items='teachers' :selected-id="selectedTeacherId" @select="selectTeacher" v-if="teachers && teachers.length > 1">
+        </ui-tab>
+        <template v-if="!isLoading">
+            <div class="course-list" v-if="courseInfo">
+                <div class="course" v-for="(course,index) in courseInfo">
+                    <div class="course-infor">
+                        <div class="name">{{course.courseName}}</div>
+                        <div class="school-name">{{course.schoolName}}</div>
+                        <div class="address">{{course.courseAddress}}</div>
+                        <div class="time">{{course.courseTime}}</div>
+                        <a class="btn btn_small btn_blue2 check" :href=' "/teacher/check.html?courseId=" + course.courseId '><i class="icon-map"></i>签到</a>
+                        <button class="btn btn_small btn_blue2 editor" @click="editor(index)"><i class="icon-keep"></i>维护</button>
+                    </div>
+                    <div class="course_nav" @click="goTarget($event,index)">
+                        <a class="item" :href='"../teacher/attendance.html?courseId="+course.courseId'>
+                            <i class="icon-leave"></i>
+                            <span>课堂考勤</span>
+                        </a>
+                        <a class="item" :href='"../teacher/comment.html?courseId="+course.courseId'>
+                            <i class="icon-switch2"></i>
+                            <span>课堂评价</span>
+                        </a>
+                        <a class="item" :href='"../teacher/mien.html?courseId="+course.courseId'>
+                            <i class="icon-wind"></i>
+                            <span>课堂风采</span>
+                        </a>
+                        <a class="item" :href='"../teacher/stu-comment.html?courseId="+course.courseId'>
+                            <i class="icon-assessment2"></i>
+                            <span>学生评价</span>
+                        </a>
+                        <a class="item" :href='"../teacher/grade.html?courseId="+course.courseId'>
+                            <i class="icon-grade"></i>
+                            <span>期末打分</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="loading" style="margin-top: 20px" v-else>
+                <i class="icon-loading"></i>
+            </div>
+            <div class="community" v-if="photos && photos.length">
+                <div class="community-hd">
+                    <div class="flex-item title">
+                        社团集体风采
+                    </div>
+                    <div class="flex-item">
+                        <a href="/teacher/community.html">
+                更多<i class="icon-arr-right"></i>
+            </a>
+                    </div>
+                </div>
+                <div class="img-list">
+                    <a href="/teacher/community.html">
+                        <img :src="item.url" alt="" v-for=" item in photos">
+                    </a>
+                </div>
+            </div>
+            <ui-nofind v-if="!isLoading && !courseInfo.length">
+                <div>暂无数据</div>
+            </ui-nofind>
+        </template>
+        <template v-else>
+            <div class="loading">
+                <i class="icon-loading"></i>
+            </div>
+        </template>
+        <ui-dialog :show="dialog.show" :title="dialog.title" :content="dialog.content" @on-confirm="dialogOnHide"></ui-dialog>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('index.js');
+    </script>
+</body>
+</html>

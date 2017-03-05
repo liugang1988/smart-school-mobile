@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-attendance">
+        <ui-header title='考勤请假'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="m-box">
+            <a class="m-box__flex" :href="'leave.html?id='+id">
+                <div class="item">
+                    请假申请
+                </div>
+                <i class="icon-arr-right"></i>
+            </a>
+            <a class="m-box__flex" :href="'my-attendance.html?id='+id">
+                <div class="item">
+                    我的请假
+                </div>
+                <i class="icon-arr-right"></i>
+            </a>
+        </div>
+        <div class="m-box attendance">
+            <div class="title">考勤记录</div>
+            <div class="m-box__flex" v-for='course in courses'>
+                <div class="item2">
+                    日期：<span v-text="course.checkDate"></span>
+                </div>
+                <div class="item2" v-if='course.type === 1'>
+                    正常
+                </div>
+                <div class="item2 highlight" v-if='course.type === 2'>
+                    迟到
+                </div>
+                <div class="item2 highlight2" v-if='course.type === 3'>
+                    事假
+                </div>
+                <div class="item2 highlight2" v-if='course.type === 4'>
+                    病假
+                </div>
+                <div class="item2 highlight4" v-if='course.type === 5'>
+                    早退
+                </div>
+                <div class="item2 highlight4" v-if='course.type === 6'>
+                    旷课
+                </div>
+            </div>
+            <ui-nofind v-if="courses && !courses.length">暂无考勤记录！</ui-nofind>
+        </div>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('attendance.js');
+    </script>
+</body>
+</html>

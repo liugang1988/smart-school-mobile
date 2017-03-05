@@ -1,0 +1,63 @@
+@import "../../../components/ui/variable";
+@import "../../../components/ui/mixin";
+.p-achievement {
+    .search-hd {
+        overflow: hidden;
+        .m-search {
+            .px2rem(width, 504);
+        }
+        .search-btn {
+            float: right;
+            .px2rem(width, 116);
+            text-align: center;
+            .px2rem(padding, 34, 0);
+            .px2px(font-size, 30);
+            .px2px(line-height, 40);
+        }
+    }
+    .work-item {
+        display: block;
+        .px2rem(margin, @spacing-vertical-small);
+        .px2px(border-radius, 10);
+        background-color: @color-white;
+        box-shadow: 0 1px 1px #ccc;
+        .work-item__bd {
+            position: relative;
+        }
+        img {
+            width: 100%;
+            .px2rem(height, 338);
+            vertical-align: top;
+            .px2px(border-top-left-radius, 10);
+            .px2px(border-top-right-radius, 10);
+        }
+        .infor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            .px2rem(padding, 0, 20);
+            .px2px(line-height, 50);
+            .px2px(fonr-size, @font-size-h5);
+            color: @color-white;
+            background-color: rgba(0, 0, 0, 0.4);
+            .flex-item {
+                flex-grow: 1;
+                width: 100%;
+                text-align: left;
+                &:last-child {
+                    text-align: right;
+                }
+                em{ font-style: normal;}
+            }
+        }
+        .work-name {
+            .px2rem(padding, 20);
+            .px2px(font-size, @font-size-h2);
+            color: @color-black;
+            text-align: left;
+        }
+    }
+}

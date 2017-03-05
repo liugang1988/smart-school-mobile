@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+    <!--百度地图逆地址解析-->
+</head>
+<body>
+    <div id="wrap" class="p-check">
+        <ui-header :title='title'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="m-box">
+            <a class="m-box__flex" :href=' "my-check.html?courseId=" + courseId '>
+                <div class="item">
+                    我的签到
+                </div>
+                <i class="icon-arr-right"></i>
+            </a>
+        </div>
+        <div class="check-infor">
+            <div class="infor-item">
+                <i class="icon-record"></i> 签到日期：<span v-text="checkInfo.currentDate"></span>
+            </div>
+            <div class="infor-item">
+                <i class="icon-time"></i> 签到时间：<span v-text="checkInfo.currentHM"></span>
+            </div>
+            <div class="infor-item f-clearfix">
+                <div class="f-fl">
+                    <i class="icon-map"></i> 签到地点：
+                </div>
+                <div class="address-detail" v-text="checkInfo.address"></div>
+            </div>
+            <textarea class="u-textarea" placeholder="请填写签到备注..." v-model="remark">
+            </textarea>
+            <div class="img-con f-clearfix">
+                <div class="img-item" v-for="(item, index) in photos">
+                    <i class="icon-del" @click="closePhotos(index)"></i>
+                    <img :src="item.url" alt="">
+                </div>
+                <ui-uploader @success="uploadSuccess" @progress="uploadPro" @error="uploadError" @start="uploaderStart"></ui-uploader>
+            </div>
+        </div>
+        <div class="g-con-b">
+            <button class="btn btn_big btn_block btn_blue" @click="submite">提交</button>
+        </div>
+        <ui-dialog :show="dialog.show" :title="dialog.title" :content="dialog.content" @on-confirm="dialogOnHide"></ui-dialog>
+        <ui-toast :show="toast.show" :text='toast.text' :type='toast.type' @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('check.js');
+    </script>
+</body>
+</html>

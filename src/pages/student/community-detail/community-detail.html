@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="import" href="components/head/head.tpl?__inline">
+</head>
+<body>
+    <div id="wrap" class="p-community-detail">
+        <ui-header title='社团集体风采详情'>
+            <ui-header-back slot='left'></ui-header-back>
+        </ui-header>
+        <div class="community-list">
+            <div class="community-item">
+                <div class="course-infor">
+                    <div class="name" v-text="infor.courseName"></div>
+                    <div class="school-name" v-text="infor.schoolName"></div>
+                    <div class="address" v-text="infor.courseAddress"></div>
+                    <div class="zanAmount">点赞数：<span v-text="infor.zanAmount"></span></div>
+                    <div class="time" v-text="infor.courseTime"></div>
+                    <a class="btn btn_small zan" :class="infor.isFlag ? 'btn_gray2' : 'btn_blue'" @click="praise">点赞</a>
+                </div>
+                <div class="infor">
+                    <div class="f-clearfix">
+                        <div class="date">日期：<span v-text="infor.evaTime"></span></div>
+                        <div>任课老师：<span v-text="infor.teacherName"></span></div>
+                    </div>
+                    <div class="f-mt10" v-text="infor.comment"></div>
+                    <div class="img-list">
+                        <img :src="item.url" alt="" v-for='(item, index) in infor.photos' @click='checkbigPic(index,infor)'>
+                    </div>
+                </div>
+            </div>
+            <!-- 点击查看大图 -->
+            <div class="checkbigPic" v-show='showImg' @click='checkbigPic()'>
+                <div class='mengImg'>
+                    <ui-banner :items='photos' :speed='100000' :is-show-dots='false' :active='photoIndex' @changes="getIndex" :is-height='isHeights'></ui-banner>
+                </div>
+            </div>
+        </div>
+        <ui-toast :show="toast.show" :text="toast.text" :type="toast.type" @on-hide="hideToast"></ui-toast>
+    </div>
+    <script>
+    require('community-detail.js');
+    </script>
+</body>
+</html>

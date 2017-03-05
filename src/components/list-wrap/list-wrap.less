@@ -1,0 +1,24 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.m-list-wrap {
+    position: relative;
+    text-align: center;
+}
+
+// 正在加载
+.m-list-wrap__loading {
+    .px2px(padding, 24);
+    .icon-loading {
+        display: inline-block;
+    }
+}
+
+// 加载更多
+.m-list-wrap__more {
+    display: block;
+    width: 100%;
+    .px2px(padding, 24);
+    background: none;
+    text-align: center;
+    border: 0;
+}

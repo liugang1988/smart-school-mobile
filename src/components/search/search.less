@@ -1,0 +1,45 @@
+@import "../ui/variable";
+@import "../ui/mixin";
+.search-hd {
+    overflow: hidden;
+    .m-search {
+        .px2rem(width, 504);
+    }
+    .search-btn {
+        float: right;
+        .px2rem(width, 116);
+        text-align: center;
+        .px2rem(padding, 34, 0);
+        .px2px(font-size, 30);
+        .px2px(line-height, 40);
+    }
+}
+
+.m-search {
+    display: flex;
+    align-items: center;
+    .px2rem(margin, 14, @spacing-vertical-small);
+    .px2rem(padding, @spacing-vertical-small, @spacing-vertical-base);
+    .px2px(border-radius, @radius-base);
+    background-color: @color-white;
+    .m-search__input {
+        display: block;
+        flex-grow: 1;
+        width: 100%;
+        border: 0;
+        .px2px(line-height, 40);
+        background-color: @color-white;
+    }
+    .icon-search {
+        flex-shrink: 0;
+        .px2px(margin-right, 6);
+        color: @color-gray5;
+        .px2px(line-height, 40);
+    }
+    .icon-close {
+        flex-shrink: 0;
+        .px2px(margin-left, 6);
+        color: @color-gray5;
+        .px2px(line-height, 40);
+    }
+}
